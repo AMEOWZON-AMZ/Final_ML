@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+WORKDIR /opt/program
+
+# build toolchain (gcc 포함)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# SageMaker training compatibility
+RUN pip install --no-cache-dir -U pip \
+    && pip install --no-cache-dir sagemaker-training
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+ENTRYPOINT ["python", "-u", "train_entrypoint.py"]
