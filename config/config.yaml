@@ -1,0 +1,22 @@
+run:
+  uuid: "74e8edac-f031-70a5-9bef-f388ea61c0a8" # 테스트
+  state: "chaos"  # 테스트
+
+s3:
+  bucket: "amz-bgm"
+  stem_prefix: "meow/stem"
+  enroll_prefix: "meow/enroll"
+  enroll_filename: "enroll.wav"
+  output_prefix: "meow/daily_outputs"
+  output_filename: "today_bgm.wav"
+
+audio:
+  sample_rate: 44100
+  vocal_gain: 1.6
+  pitch_up_semitone: 0.7
+seed_vc:
+  repo_dir: "vc/seed-vc"
+  diffusion_steps: 90
+  f0_condition: false
+  fp16: false
+  work_dir: "/home/sagemaker-user/user-default-efs/meow-seedvc/cache/work"
